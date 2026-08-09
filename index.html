@@ -225,13 +225,25 @@
   <section class="tool" id="t2">
     <div class="kn"><span class="num">02</span><span class="em">📋</span></div>
     <h2>Plantillas de Marketplace</h2>
-    <p class="lead">Estructuras probadas para tu publicación. Rellena lo que está entre [corchetes] y publica. La descripción vende tanto como las fotos.</p>
+    <p class="lead">Estructuras probadas para tu publicación. Rellena lo del auto que está entre [corchetes] y publica. Los datos de tu dealer se llenan solos 👇</p>
+
+    <div class="gen">
+      <p style="margin:0 0 4px;font-weight:800;font-size:14.5px">⚙️ Tus datos del dealer (ponlos una vez)</p>
+      <p style="margin:0 0 13px;font-size:13px;color:var(--ink-soft)">Escríbelos aquí y se llenan solitos en TODAS las plantillas de abajo.</p>
+      <div class="gen-grid">
+        <div class="fld"><label>Nombre del dealer</label><input id="m_dealer" placeholder="Xtreme Motors Exchange"></div>
+        <div class="fld"><label>Dirección</label><input id="m_addr" placeholder="1234 W Camelback Rd, Phoenix AZ"></div>
+        <div class="fld"><label>Teléfono / WhatsApp</label><input id="m_phone" placeholder="(602) 821-7262"></div>
+        <div class="fld"><label>Ciudad (para los hashtags)</label><input id="m_city" placeholder="Phoenix"></div>
+      </div>
+      <button class="genbtn" onclick="aplicarDatos()">✨ Llenar mis plantillas</button>
+    </div>
 
     <h3>Plantilla completa (la que más funciona)</h3>
     <div class="cb withbtn">
       <div class="lbl">📋 Descripción de listing</div>
       <button class="copy">Copiar</button>
-      <pre>🔥 [AÑO MARCA MODELO] — ¡LISTO PARA ESTRENAR!
+      <pre class="tpl">🔥 [AÑO MARCA MODELO] — ¡LISTO PARA ESTRENAR!
 
 ✅ [MILLAS] millas
 ✅ Título limpio / [1 dueño / carfax disponible]
@@ -243,27 +255,33 @@
 🟢 SÍ financiamos con ITIN, licencia o pasaporte
 🟢 Aceptamos tu carro a cuenta (trade-in)
 
-📲 Escríbeme al WhatsApp: [TELÉFONO]
-📍 [CIUDAD] — pruébalo hoy y sal manejando 🔑
+📲 WhatsApp: [TELÉFONO]
+🏢 [NOMBRE DEL DEALER]
+📍 [DIRECCIÓN]
+Pruébalo hoy y sal manejando 🔑
 
-*Precio + impuestos. Sujeto a disponibilidad.</pre>
+*Precio + impuestos. Sujeto a disponibilidad.
+
+#autosusados #carsforsale #usedcars #financiamiento #creditoautomotriz #buyherepayhere #autos #dealer [#CIUDAD]</pre>
     </div>
 
     <h3>Plantilla corta (para autos económicos / cash)</h3>
     <div class="cb withbtn">
       <div class="lbl">📋 Listing corto</div>
       <button class="copy">Copiar</button>
-      <pre>[AÑO MARCA MODELO] — [$PRECIO] 🚗
+      <pre class="tpl">[AÑO MARCA MODELO] — [$PRECIO] 🚗
 [MILLAS] millas · título limpio · corre perfecto.
 Ideal para trabajo o primer carro.
-📲 [TELÉFONO] · [CIUDAD]. ¡Mándame mensaje!</pre>
+📲 [TELÉFONO] · 🏢 [NOMBRE DEL DEALER] · 📍 [DIRECCIÓN]
+
+#autosusados #carsforsale #usedcars #autos #dealer #gangaautos [#CIUDAD]</pre>
     </div>
 
     <h3>🔥 Modo urgente (apura a comprar)</h3>
     <div class="cb withbtn">
       <div class="lbl">📋 Listing urgencia</div>
       <button class="copy">Copiar</button>
-      <pre>🚨 ¡CÓRRELE QUE SE VA! 🚨
+      <pre class="tpl">🚨 ¡CÓRRELE QUE SE VA! 🚨
 [AÑO MARCA MODELO] — [$PRECIO]
 
 Ya tengo 3 personas preguntando 👀 el primero que lo aparte se lo lleva.
@@ -275,14 +293,17 @@ Ya tengo 3 personas preguntando 👀 el primero que lo aparte se lo lleva.
 
 No lo pienses tanto o alguien más te lo gana ⏰
 📲 Mándame mensaje YA: [TELÉFONO]
-📍 [CIUDAD] — ven hoy mismo a verlo 🏁</pre>
+🏢 [NOMBRE DEL DEALER] · 📍 [DIRECCIÓN]
+Ven hoy mismo a verlo 🏁
+
+#autosusados #carsforsale #usedcars #gangaautos #buyherepayhere #autos #dealer [#CIUDAD]</pre>
     </div>
 
     <h3>😎 Modo barrio (bien perrón)</h3>
     <div class="cb withbtn">
       <div class="lbl">📋 Listing barrio</div>
       <button class="copy">Copiar</button>
-      <pre>🔥🔥 MIRA ESTA CHULADA 🔥🔥
+      <pre class="tpl">🔥🔥 MIRA ESTA CHULADA 🔥🔥
 [AÑO MARCA MODELO] — pura calidad, compa 💪
 
 Título limpio ✅ nada de broncas
@@ -294,14 +315,17 @@ Con [$ENGANCHE] de enganche te la llevas 🔑
 ITIN, licencia o pasaporte — aquí sí te ayudamos, raza 🙌
 
 Ándale, no la dejes ir 👇
-📲 [TELÉFONO] · [CIUDAD]. ¡Escríbeme, carnal! 🚗💨</pre>
+📲 [TELÉFONO] · ¡Escríbeme, carnal! 🚗💨
+🏢 [NOMBRE DEL DEALER] · 📍 [DIRECCIÓN]
+
+#autosusados #carrosenventa #trocas #trocasperronas #buyherepayhere #autos #dealer [#CIUDAD]</pre>
     </div>
 
     <h3>🛻 Modo troca perrona (pickups/SUV)</h3>
     <div class="cb withbtn">
       <div class="lbl">📋 Listing troca</div>
       <button class="copy">Copiar</button>
-      <pre>🛻🔥 TROCA PERRONA DISPONIBLE 🔥🛻
+      <pre class="tpl">🛻🔥 TROCA PERRONA DISPONIBLE 🔥🛻
 [AÑO MARCA MODELO]
 
 Pa'l jale o pa'l vacilón, esta jala parejo 💪
@@ -314,14 +338,17 @@ Precio: [$PRECIO] 💵
 Enganche desde [$ENGANCHE] — financiamos con ITIN o licencia
 Aceptamos tu carro a cuenta (trade-in) 🔄
 
-📲 [TELÉFONO] · [CIUDAD]. Ven por ella hoy 🔑</pre>
+📲 [TELÉFONO] · Ven por ella hoy 🔑
+🏢 [NOMBRE DEL DEALER] · 📍 [DIRECCIÓN]
+
+#trocas #trocasperronas #pickups #trucksforsale #4x4 #autosusados #buyherepayhere #dealer [#CIUDAD]</pre>
     </div>
 
     <h3>🔑 Modo primer carro / sin crédito</h3>
     <div class="cb withbtn">
       <div class="lbl">📋 Listing crédito</div>
       <button class="copy">Copiar</button>
-      <pre>¿SIN CRÉDITO? ¡AQUÍ SÍ SE PUEDE! 🙌
+      <pre class="tpl">¿SIN CRÉDITO? ¡AQUÍ SÍ SE PUEDE! 🙌
 [AÑO MARCA MODELO] — [$PRECIO]
 
 🟢 Financiamos con ITIN, pasaporte o licencia
@@ -332,7 +359,10 @@ Aceptamos tu carro a cuenta (trade-in) 🔄
 [MILLAS] millas · título limpio · listo para estrenar.
 Empieza tu proceso hoy y sal manejando lo tuyo 🔑
 
-📲 Escríbeme: [TELÉFONO] · [CIUDAD]</pre>
+📲 Escríbeme: [TELÉFONO]
+🏢 [NOMBRE DEL DEALER] · 📍 [DIRECCIÓN]
+
+#creditoconITIN #financiamiento #sincredito #autosusados #buyherepayhere #primerauto #dealer [#CIUDAD]</pre>
     </div>
 
     <div class="note">⚠️ <b>Regla de oro de Marketplace:</b> vuelve a publicar (renew/relist) cada 3–4 días. El algoritmo premia lo nuevo. Un mismo auto lo puedes tener publicado varias veces con fotos y título distintos — <b>alterna los estilos de arriba</b> para no repetir y llegar a más gente.</div>
@@ -661,6 +691,26 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
     });
     document.getElementById('g_out').innerHTML=html;
     document.getElementById('g_out').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  // ── plantillas de marketplace: llenar datos del dealer una vez ──
+  var tplStore=[];
+  document.querySelectorAll('pre.tpl').forEach(function(p){tplStore.push({el:p,src:p.textContent});});
+  function aplicarDatos(){
+    var dealer=v('m_dealer'),addr=v('m_addr'),phone=v('m_phone'),city=v('m_city');
+    var cityTag='';
+    if(city){var c=city.replace(/\s+/g,'');var C=c.charAt(0).toUpperCase()+c.slice(1);cityTag='#'+C+'Cars #Autos'+C;}
+    tplStore.forEach(function(o){
+      var t=o.src;
+      if(dealer)t=t.split('[NOMBRE DEL DEALER]').join(dealer);
+      if(addr)t=t.split('[DIRECCIÓN]').join(addr);
+      if(phone)t=t.split('[TELÉFONO]').join(phone);
+      if(city)t=t.split('[CIUDAD]').join(city);
+      t=t.split('[#CIUDAD]').join(cityTag||'[#CIUDAD]');
+      o.el.textContent=t;
+    });
+    toast('✅ Plantillas actualizadas con tus datos');
+    var box=document.getElementById('t2');if(box)box.querySelector('h3').scrollIntoView({behavior:'smooth',block:'start'});
   }
 </script>
 </body>
