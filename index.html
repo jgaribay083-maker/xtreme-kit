@@ -115,6 +115,11 @@
     box-shadow:0 8px 22px rgba(233,84,28,.35);font-family:var(--sans)}
   .genbtn:hover{transform:translateY(-1px)}
   .genout{margin-top:4px}
+  .checks{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .chk{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);
+    border-radius:11px;padding:11px 15px;font-size:14px;font-weight:700;cursor:pointer;user-select:none;transition:.15s ease}
+  .chk input{width:19px;height:19px;accent-color:var(--accent);cursor:pointer;margin:0}
+  .chk:has(input:checked){border-color:var(--accent);color:var(--accent);background:var(--cream)}
 
   /* lists */
   ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
@@ -201,10 +206,14 @@
         <div class="fld"><label>Precio</label><input id="g_price" placeholder="$13,995"></div>
         <div class="fld"><label>Millas</label><input id="g_miles" placeholder="78,000 millas"></div>
         <div class="fld"><label>Enganche desde</label><input id="g_down" placeholder="$1,500 de enganche"></div>
-        <div class="fld"><label>Detalle clave</label><input id="g_hook" placeholder="Un solo dueño, título limpio"></div>
+        <div class="fld"><label>Detalle clave (opcional)</label><input id="g_hook" placeholder="Aire helado, llantas nuevas..."></div>
         <div class="fld"><label>Tu nombre</label><input id="g_name" placeholder="Josue"></div>
         <div class="fld"><label>Tu teléfono / WhatsApp</label><input id="g_phone" placeholder="(602) 821-7262"></div>
         <div class="fld"><label>Ciudad</label><input id="g_city" placeholder="Phoenix, AZ"></div>
+      </div>
+      <div class="checks">
+        <label class="chk"><input type="checkbox" id="g_owner"> ✅ Un solo dueño</label>
+        <label class="chk"><input type="checkbox" id="g_title"> ✅ Título limpio</label>
       </div>
       <button class="genbtn" onclick="generar()">⚡ Generar mis 6 anuncios</button>
     </div>
@@ -571,6 +580,8 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
   function generar(){
     var car=v('g_car'),price=v('g_price'),miles=v('g_miles'),down=v('g_down'),
         hook=v('g_hook'),name=v('g_name'),phone=v('g_phone'),city=v('g_city');
+    var oneOwner=document.getElementById('g_owner').checked,
+        cleanTitle=document.getElementById('g_title').checked;
     var carT=car||'este auto';
     var L=function(arr){return arr.filter(Boolean).join('\n');};
     var contacto=L([name&&phone?('📲 '+name+' · '+phone):(phone?('📲 '+phone):''), city?('📍 '+city):'']);
@@ -579,6 +590,8 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
       {n:'Formal / profesional',t:L([
         (car?('🚗 '+car):'🚗 Excelente unidad disponible'),
         hook?('• '+hook):'',
+        oneOwner?'• Un solo dueño':'',
+        cleanTitle?'• Título limpio':'',
         miles?('• '+miles):'',
         '• Financiamiento disponible (ITIN, licencia o pasaporte)',
         down?('• Enganche desde '+down):'',
@@ -589,6 +602,8 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
         (car?('🔥🔥 '+car+' 🔥🔥'):'🔥🔥 CARRO DISPONIBLE 🔥🔥'),
         'De volada te lo llevas 👇',
         hook?('✅ '+hook):'',
+        oneOwner?'✅ Un solo dueño':'',
+        cleanTitle?'✅ Título limpio':'',
         miles?('✅ '+miles):'',
         '✅ Financiamos con ITIN o licencia',
         down?('✅ Con solo '+down):'',
@@ -601,6 +616,8 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
         price?('Precio de remate: '+price):'',
         down?('Enganche desde '+down+' y sales manejando 🔑'):'Enganche accesible y sales manejando 🔑',
         miles?('Solo '+miles):'',
+        oneOwner?'✅ Un solo dueño':'',
+        cleanTitle?'✅ Título limpio':'',
         hook?(hook):'',
         '',
         'Ya tengo gente preguntando — el primero que aparte se lo lleva.',contacto])},
@@ -608,6 +625,8 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
         (car?('✨ '+car+' ✨'):'✨ Unidad premium ✨'),
         'Impecable por dentro y por fuera.',
         hook?('• '+hook):'',
+        oneOwner?'• Un solo dueño':'',
+        cleanTitle?'• Título limpio':'',
         miles?('• '+miles):'',
         '• Listo para estrenar',
         price?('Inversión: '+price):'',
@@ -618,6 +637,8 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
         (car?('🚗 '+car+' — ideal para la familia'):'🚗 El carro ideal para tu familia'),
         'Seguro, cómodo y rendidor.',
         hook?('✅ '+hook):'',
+        oneOwner?'✅ Un solo dueño':'',
+        cleanTitle?'✅ Título limpio':'',
         miles?('✅ '+miles):'',
         '✅ Te ayudamos con el financiamiento paso a paso',
         down?('✅ Enganche desde '+down):'',
@@ -627,6 +648,7 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
       {n:'Corto (Stories / status)',t:L([
         (car?(car+' 🚗'):'Carro disponible 🚗'),
         [price,miles].filter(Boolean).join(' · '),
+        [oneOwner?'1 dueño':'',cleanTitle?'título limpio':''].filter(Boolean).join(' · '),
         down?('Enganche desde '+down):'',
         'ITIN OK ✅',
         contacto])}
