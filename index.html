@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Kit Vende Autos — Tus herramientas</title>
+<style>
+  :root{
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace;
+    --ground:#F2F0EC;--surface:#FFFFFF;--surface-2:#F7F5F1;--ink:#191512;--ink-soft:#6B625A;
+    --line:#E4DFD7;--accent:#E9541C;--accent-2:#FF8A3C;--accent-ink:#B23F12;--good:#1F9D57;
+    --night:#16110D;--night-2:#221A14;--cream:#FFF6EF;
+    --shadow:0 1px 2px rgba(25,21,18,.05),0 12px 34px rgba(25,21,18,.09);
+    --shadow-lift:0 2px 4px rgba(25,21,18,.06),0 18px 50px rgba(25,21,18,.14);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--ground:#0E0B09;--surface:#181310;--surface-2:#201914;--ink:#F2EDE8;--ink-soft:#A39A90;
+    --line:#2E2620;--accent:#FF6A2E;--accent-2:#FFA45C;--accent-ink:#FF8A5C;--good:#40C078;
+    --night:#0A0806;--night-2:#171108;--cream:#241A12;
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 12px 34px rgba(0,0,0,.42);
+    --shadow-lift:0 2px 4px rgba(0,0,0,.5),0 20px 55px rgba(0,0,0,.55);}
+  }
+  :root[data-theme="light"]{--ground:#F2F0EC;--surface:#FFFFFF;--surface-2:#F7F5F1;--ink:#191512;--ink-soft:#6B625A;
+    --line:#E4DFD7;--accent:#E9541C;--accent-2:#FF8A3C;--accent-ink:#B23F12;--good:#1F9D57;
+    --night:#16110D;--night-2:#221A14;--cream:#FFF6EF;
+    --shadow:0 1px 2px rgba(25,21,18,.05),0 12px 34px rgba(25,21,18,.09);
+    --shadow-lift:0 2px 4px rgba(25,21,18,.06),0 18px 50px rgba(25,21,18,.14);}
+  :root[data-theme="dark"]{--ground:#0E0B09;--surface:#181310;--surface-2:#201914;--ink:#F2EDE8;--ink-soft:#A39A90;
+    --line:#2E2620;--accent:#FF6A2E;--accent-2:#FFA45C;--accent-ink:#FF8A5C;--good:#40C078;
+    --night:#0A0806;--night-2:#171108;--cream:#241A12;
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 12px 34px rgba(0,0,0,.42);
+    --shadow-lift:0 2px 4px rgba(0,0,0,.5),0 20px 55px rgba(0,0,0,.55);}
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
+  body{margin:0;font-family:var(--sans);background:var(--ground);color:var(--ink);
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+  /* ── top bar ── */
+  .top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--surface) 90%,transparent);
+    backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .top-in{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:11px 16px}
+  .brand{font-weight:900;font-size:15px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+  .brand .car{filter:saturate(1.1)}
+  .brand small{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .top .spacer{flex:1}
+  .themebtn{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:10px;
+    width:38px;height:38px;font-size:16px;cursor:pointer;display:grid;place-items:center}
+
+  .wrap{max-width:900px;margin:0 auto;padding:0 16px 120px}
+
+  /* ── hero ── */
+  .hero{background:
+      radial-gradient(ellipse 90% 60% at 85% -10%, rgba(233,84,28,.30), transparent 60%),
+      linear-gradient(175deg, var(--night) 0%, var(--night-2) 100%);
+    color:#fff;border-radius:0 0 22px 22px;padding:34px 22px 30px;position:relative;overflow:hidden;
+    margin:0 -16px 26px}
+  .hero::after{content:"🚗";position:absolute;right:-14px;bottom:-26px;font-size:120px;opacity:.06;transform:rotate(-12deg)}
+  .hero .in{max-width:868px;margin:0 auto;position:relative;z-index:1}
+  .hero .welc{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#FFB48A}
+  .hero h1{font-size:clamp(26px,6vw,38px);line-height:1.05;margin:10px 0 12px;font-weight:900;letter-spacing:-.03em}
+  .hero p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.8);max-width:56ch;margin:0}
+  .hero p b{color:#fff}
+
+  /* ── section nav grid ── */
+  .nav{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:-14px 0 30px;position:relative;z-index:2}
+  @media(max-width:640px){.nav{grid-template-columns:repeat(2,1fr)}}
+  .nav a{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:12px 10px;
+    text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);
+    transition:.15s ease}
+  .nav a:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .nav a .e{font-size:20px}
+  .nav a .t{font-size:12px;font-weight:800;line-height:1.25}
+
+  /* ── sections ── */
+  section.tool{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px 22px;
+    box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:72px}
+  .kn{display:flex;align-items:center;gap:11px;margin:0 0 6px}
+  .kn .num{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:7px;padding:3px 8px}
+  .kn .em{font-size:26px}
+  section.tool h2{font-size:clamp(20px,4.5vw,25px);font-weight:900;letter-spacing:-.02em;margin:6px 0 6px}
+  .lead{font-size:14.5px;color:var(--ink-soft);line-height:1.55;margin:0 0 18px;max-width:60ch}
+  h3{font-size:15px;font-weight:800;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
+  h3::before{content:"";width:14px;height:2px;background:var(--accent);border-radius:2px}
+
+  /* copy block */
+  .cb{position:relative;background:var(--surface-2);border:1px solid var(--line);border-radius:13px;
+    padding:15px 16px 15px;margin:0 0 12px}
+  .cb .lbl{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+    margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .cb pre{font-family:var(--sans);font-size:14px;line-height:1.6;white-space:pre-wrap;margin:0;color:var(--ink)}
+  .copy{position:absolute;top:11px;right:11px;border:1px solid var(--line);background:var(--surface);
+    color:var(--ink-soft);border-radius:9px;padding:6px 11px;font-size:12px;font-weight:700;cursor:pointer;
+    display:inline-flex;align-items:center;gap:6px;transition:.15s ease;font-family:var(--sans)}
+  .copy:hover{border-color:var(--accent);color:var(--accent)}
+  .copy.done{color:var(--good);border-color:color-mix(in srgb,var(--good) 45%,transparent)}
+  .cb.withbtn pre{padding-top:26px}
+  @media(min-width:520px){.cb.withbtn pre{padding-top:0;padding-right:80px}}
+
+  /* generator */
+  .gen{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  .gen-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  @media(max-width:560px){.gen-grid{grid-template-columns:1fr}}
+  .fld{display:flex;flex-direction:column;gap:5px}
+  .fld label{font-size:12px;font-weight:700;color:var(--ink-soft)}
+  .fld input{font-family:var(--sans);font-size:14px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);
+    background:var(--surface);color:var(--ink);width:100%}
+  .fld input:focus{outline:none;border-color:var(--accent)}
+  .genbtn{margin-top:14px;width:100%;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;
+    font-weight:800;font-size:15px;padding:14px;border:none;border-radius:12px;cursor:pointer;
+    box-shadow:0 8px 22px rgba(233,84,28,.35);font-family:var(--sans)}
+  .genbtn:hover{transform:translateY(-1px)}
+  .genout{margin-top:4px}
+
+  /* lists */
+  ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  ul.clean li{display:flex;gap:11px;font-size:14px;line-height:1.5;background:var(--surface-2);
+    border:1px solid var(--line);border-radius:11px;padding:11px 13px}
+  ul.clean.good li::before{content:"✓";color:var(--good);font-weight:900;flex:0 0 auto}
+  ul.clean.bad li::before{content:"✕";color:#C4453A;font-weight:900;flex:0 0 auto}
+  ul.clean.step{counter-reset:s}
+  ul.clean.step li{align-items:flex-start}
+  ul.clean.step li::before{counter-increment:s;content:counter(s);background:var(--accent);color:#fff;
+    font-weight:800;font-size:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.two{grid-template-columns:1fr}}
+
+  .note{background:var(--cream);border:1px dashed color-mix(in srgb,var(--accent) 45%,transparent);
+    border-radius:12px;padding:13px 15px;font-size:13.5px;line-height:1.55;color:var(--ink);margin:14px 0 0}
+  .note b{color:var(--accent)}
+
+  .hook{background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:9px;padding:10px 13px;font-size:14px;line-height:1.45;font-weight:600;margin-bottom:8px}
+
+  .obj{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden;background:var(--surface-2)}
+  .obj summary{font-weight:800;font-size:14px;cursor:pointer;list-style:none;padding:13px 15px;
+    display:flex;justify-content:space-between;gap:10px;align-items:center}
+  .obj summary::-webkit-details-marker{display:none}
+  .obj summary::after{content:"+";color:var(--accent);font-weight:900;font-size:19px;flex:0 0 auto}
+  .obj[open] summary::after{content:"–"}
+  .obj[open]{border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:var(--surface)}
+  .obj .body{padding:0 15px 14px}
+
+  .foot{text-align:center;font-size:12.5px;color:var(--ink-soft);padding:26px 0 0;line-height:1.7}
+  .foot b{color:var(--ink)}
+  .foot a{color:var(--accent);text-decoration:none;font-weight:700}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);opacity:0;
+    background:var(--night);color:#fff;font-size:13.5px;font-weight:700;padding:11px 20px;border-radius:12px;
+    box-shadow:var(--shadow-lift);pointer-events:none;transition:.25s ease;z-index:80}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-in">
+    <div class="brand"><span class="car">🚗</span><div>Kit Vende Autos<small>Vista Growth Agency</small></div></div>
+    <div class="spacer"></div>
+    <button class="themebtn" id="theme" aria-label="Cambiar tema">🌙</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="in">
+      <div class="welc">✦ Acceso completo · Bienvenido</div>
+      <h1>Todo lo que uso para vender autos, en tus manos.</h1>
+      <p>Estas son las <b>8 herramientas reales</b> con las que genero leads a menos de $1. Copia, cambia tus datos y publica hoy mismo. <b>Guarda esta página en favoritos</b> — es tuya para siempre.</p>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <a href="#t1"><span class="e">🚗</span><span class="t">1 · Generador de anuncios</span></a>
+    <a href="#t2"><span class="e">📋</span><span class="t">2 · Plantillas Marketplace</span></a>
+    <a href="#t3"><span class="e">🎬</span><span class="t">3 · Guiones de Reels</span></a>
+    <a href="#t4"><span class="e">💬</span><span class="t">4 · Guiones de WhatsApp</span></a>
+    <a href="#t5"><span class="e">🌎</span><span class="t">5 · Respuestas bilingües</span></a>
+    <a href="#t6"><span class="e">🏁</span><span class="t">6 · Rutina diaria</span></a>
+    <a href="#t7"><span class="e">📸</span><span class="t">7 · Fotos que venden</span></a>
+    <a href="#t8"><span class="e">✅</span><span class="t">8 · Cheat sheet calificación</span></a>
+  </nav>
+
+  <!-- ══ 1 · GENERADOR ══ -->
+  <section class="tool" id="t1">
+    <div class="kn"><span class="num">01</span><span class="em">🚗</span></div>
+    <h2>Generador de anuncios</h2>
+    <p class="lead">Llena los datos del auto una vez y genera <b>6 anuncios listos</b> en distintos estilos. Cópialos y pégalos en Marketplace, Facebook o WhatsApp.</p>
+
+    <div class="gen">
+      <div class="gen-grid">
+        <div class="fld"><label>Año, marca y modelo</label><input id="g_car" placeholder="2018 Honda Civic LX"></div>
+        <div class="fld"><label>Precio</label><input id="g_price" placeholder="$13,995"></div>
+        <div class="fld"><label>Millas</label><input id="g_miles" placeholder="78,000 millas"></div>
+        <div class="fld"><label>Enganche desde</label><input id="g_down" placeholder="$1,500 de enganche"></div>
+        <div class="fld"><label>Detalle clave</label><input id="g_hook" placeholder="Un solo dueño, título limpio"></div>
+        <div class="fld"><label>Tu nombre</label><input id="g_name" placeholder="Josue"></div>
+        <div class="fld"><label>Tu teléfono / WhatsApp</label><input id="g_phone" placeholder="(602) 821-7262"></div>
+        <div class="fld"><label>Ciudad</label><input id="g_city" placeholder="Phoenix, AZ"></div>
+      </div>
+      <button class="genbtn" onclick="generar()">⚡ Generar mis 6 anuncios</button>
+    </div>
+    <div class="genout" id="g_out"></div>
+    <div class="note">💡 <b>Tip:</b> Si dejas un campo vacío, el anuncio se genera igual saltándose ese dato. El estilo <b>callejero</b> y el de <b>urgencia</b> son los que más mensajes jalan en Marketplace.</div>
+  </section>
+
+  <!-- ══ 2 · MARKETPLACE ══ -->
+  <section class="tool" id="t2">
+    <div class="kn"><span class="num">02</span><span class="em">📋</span></div>
+    <h2>Plantillas de Marketplace</h2>
+    <p class="lead">Estructuras probadas para tu publicación. Rellena lo que está entre [corchetes] y publica. La descripción vende tanto como las fotos.</p>
+
+    <h3>Plantilla completa (la que más funciona)</h3>
+    <div class="cb withbtn">
+      <div class="lbl">📋 Descripción de listing</div>
+      <button class="copy">Copiar</button>
+      <pre>🔥 [AÑO MARCA MODELO] — ¡LISTO PARA ESTRENAR!
+
+✅ [MILLAS] millas
+✅ Título limpio / [1 dueño / carfax disponible]
+✅ Motor y transmisión al 100%
+✅ Aire, llantas y frenos en buen estado
+
+💰 Precio: [$PRECIO]
+📉 Facilidades de pago — enganche desde [$ENGANCHE]
+🟢 SÍ financiamos con ITIN, licencia o pasaporte
+🟢 Aceptamos tu carro a cuenta (trade-in)
+
+📲 Escríbeme al WhatsApp: [TELÉFONO]
+📍 [CIUDAD] — pruébalo hoy y sal manejando 🔑
+
+*Precio + impuestos. Sujeto a disponibilidad.</pre>
+    </div>
+
+    <h3>Plantilla corta (para autos económicos / cash)</h3>
+    <div class="cb withbtn">
+      <div class="lbl">📋 Listing corto</div>
+      <button class="copy">Copiar</button>
+      <pre>[AÑO MARCA MODELO] — [$PRECIO] 🚗
+[MILLAS] millas · título limpio · corre perfecto.
+Ideal para trabajo o primer carro.
+📲 [TELÉFONO] · [CIUDAD]. ¡Mándame mensaje!</pre>
+    </div>
+
+    <h3>🔥 Modo urgente (apura a comprar)</h3>
+    <div class="cb withbtn">
+      <div class="lbl">📋 Listing urgencia</div>
+      <button class="copy">Copiar</button>
+      <pre>🚨 ¡CÓRRELE QUE SE VA! 🚨
+[AÑO MARCA MODELO] — [$PRECIO]
+
+Ya tengo 3 personas preguntando 👀 el primero que lo aparte se lo lleva.
+
+✅ [MILLAS] millas
+✅ Título limpio, listo para placas
+✅ Enganche desde [$ENGANCHE] y SALES MANEJANDO HOY 🔑
+✅ Financiamos con ITIN o licencia
+
+No lo pienses tanto o alguien más te lo gana ⏰
+📲 Mándame mensaje YA: [TELÉFONO]
+📍 [CIUDAD] — ven hoy mismo a verlo 🏁</pre>
+    </div>
+
+    <h3>😎 Modo barrio (bien perrón)</h3>
+    <div class="cb withbtn">
+      <div class="lbl">📋 Listing barrio</div>
+      <button class="copy">Copiar</button>
+      <pre>🔥🔥 MIRA ESTA CHULADA 🔥🔥
+[AÑO MARCA MODELO] — pura calidad, compa 💪
+
+Título limpio ✅ nada de broncas
+[MILLAS] millas, corre como reloj ⏱️
+Interior limpiecito, aire bien helado ❄️
+
+Precio de amigo: [$PRECIO] 💵
+Con [$ENGANCHE] de enganche te la llevas 🔑
+ITIN, licencia o pasaporte — aquí sí te ayudamos, raza 🙌
+
+Ándale, no la dejes ir 👇
+📲 [TELÉFONO] · [CIUDAD]. ¡Escríbeme, carnal! 🚗💨</pre>
+    </div>
+
+    <h3>🛻 Modo troca perrona (pickups/SUV)</h3>
+    <div class="cb withbtn">
+      <div class="lbl">📋 Listing troca</div>
+      <button class="copy">Copiar</button>
+      <pre>🛻🔥 TROCA PERRONA DISPONIBLE 🔥🛻
+[AÑO MARCA MODELO]
+
+Pa'l jale o pa'l vacilón, esta jala parejo 💪
+✅ Título limpio
+✅ [MILLAS] millas
+✅ Llantas buenas, motor al 100
+✅ [DETALLE: 4x4 / doble cabina / caja larga]
+
+Precio: [$PRECIO] 💵
+Enganche desde [$ENGANCHE] — financiamos con ITIN o licencia
+Aceptamos tu carro a cuenta (trade-in) 🔄
+
+📲 [TELÉFONO] · [CIUDAD]. Ven por ella hoy 🔑</pre>
+    </div>
+
+    <h3>🔑 Modo primer carro / sin crédito</h3>
+    <div class="cb withbtn">
+      <div class="lbl">📋 Listing crédito</div>
+      <button class="copy">Copiar</button>
+      <pre>¿SIN CRÉDITO? ¡AQUÍ SÍ SE PUEDE! 🙌
+[AÑO MARCA MODELO] — [$PRECIO]
+
+🟢 Financiamos con ITIN, pasaporte o licencia
+🟢 Sin necesidad de historial en USA
+🟢 Enganche accesible desde [$ENGANCHE]
+🟢 Tú vas creando tu crédito con este carro
+
+[MILLAS] millas · título limpio · listo para estrenar.
+Empieza tu proceso hoy y sal manejando lo tuyo 🔑
+
+📲 Escríbeme: [TELÉFONO] · [CIUDAD]</pre>
+    </div>
+
+    <div class="note">⚠️ <b>Regla de oro de Marketplace:</b> vuelve a publicar (renew/relist) cada 3–4 días. El algoritmo premia lo nuevo. Un mismo auto lo puedes tener publicado varias veces con fotos y título distintos — <b>alterna los estilos de arriba</b> para no repetir y llegar a más gente.</div>
+  </section>
+
+  <!-- ══ 3 · REELS ══ -->
+  <section class="tool" id="t3">
+    <div class="kn"><span class="num">03</span><span class="em">🎬</span></div>
+    <h2>Guiones de Reels</h2>
+    <p class="lead">6 guiones cortos (15–25 seg) con estructura <b>gancho → desarrollo → llamado a la acción</b>. El primer segundo lo es todo.</p>
+
+    <h3>Guion 1 · El del crédito</h3>
+    <div class="cb withbtn"><div class="lbl">🎬 Script</div><button class="copy">Copiar</button><pre>[GANCHO 0-3s] "¿Te dijeron que NO por tu crédito?" 👀
+[DESARROLLO] "Aquí no importa. Financiamos con ITIN, pasaporte o licencia. Enganche accesible y sales manejando el mismo día."
+[MUESTRA] (enseñas 2-3 autos rápido)
+[CTA] "Mándame la palabra AUTO al WhatsApp y te digo para cuál calificas 👇"</pre></div>
+
+    <h3>Guion 2 · Tour rápido del auto</h3>
+    <div class="cb withbtn"><div class="lbl">🎬 Script</div><button class="copy">Copiar</button><pre>[GANCHO] "Este [MARCA MODELO] por [$PRECIO]… no va a durar." 🔥
+[DESARROLLO] (caminas alrededor) "Míralo: llantas nuevas, interior limpio, aire helado. [MILLAS] millas nada más."
+[PRUEBA] "Enganche desde [$ENGANCHE]."
+[CTA] "¿Lo quieres ver hoy? Coméntame 'YO' y te paso la ubicación."</pre></div>
+
+    <h3>Guion 3 · Antes de comprar en Marketplace</h3>
+    <div class="cb withbtn"><div class="lbl">🎬 Script</div><button class="copy">Copiar</button><pre>[GANCHO] "No compres carro en Marketplace sin ver esto." ✋
+[DESARROLLO] "3 cosas que NUNCA te dicen: 1) revisa el título, 2) pide el carfax, 3) escucha el motor en frío."
+[POSICIÓN] "Con nosotros todo eso viene por escrito."
+[CTA] "Sígueme para más tips y escríbeme si buscas carro seguro."</pre></div>
+
+    <h3>Guion 4 · Testimonio / entrega</h3>
+    <div class="cb withbtn"><div class="lbl">🎬 Script</div><button class="copy">Copiar</button><pre>[GANCHO] "Se llevó su primer carro sin historial de crédito." 🔑😄
+[DESARROLLO] (grabas la entrega, llaves en mano) "Enganche accesible, papeles en orden, y hoy maneja lo suyo."
+[CTA] "El siguiente puedes ser tú. Mándame mensaje 📲"</pre></div>
+
+    <h3>Guion 5 · Objeción del enganche</h3>
+    <div class="cb withbtn"><div class="lbl">🎬 Script</div><button class="copy">Copiar</button><pre>[GANCHO] "¿Crees que necesitas mucho dinero para un carro?" 💸
+[DESARROLLO] "Mentira. Tenemos opciones con enganche bajo y pagos que sí caben en tu bolsillo."
+[CTA] "Dime cuánto tienes disponible y te armo una opción. WhatsApp 👇"</pre></div>
+
+    <h3>Guion 6 · Urgencia / inventario</h3>
+    <div class="cb withbtn"><div class="lbl">🎬 Script</div><button class="copy">Copiar</button><pre>[GANCHO] "5 carros que se van esta semana 🏁"
+[DESARROLLO] (muestras 5 rápido con precio en pantalla) "Todos con financiamiento y trade-in."
+[CTA] "¿Cuál te late? Comenta el número y te mando info."</pre></div>
+
+    <h3>🪝 Banco de ganchos (primeros 3 segundos)</h3>
+    <div class="hook">"¿Te dijeron que NO por tu crédito?"</div>
+    <div class="hook">"Este carro por [$PRECIO]… corre para verlo."</div>
+    <div class="hook">"No compres carro sin ver esto primero."</div>
+    <div class="hook">"Con ITIN también puedes tener tu carro."</div>
+    <div class="hook">"El error que te cuesta miles al comprar carro."</div>
+    <div class="hook">"5 carros por menos de [$X] esta semana."</div>
+    <div class="hook">"Enganche desde [$ENGANCHE] y sales manejando hoy."</div>
+    <div class="hook">"Así se ve la cara de alguien que estrena su primer carro 🔑"</div>
+  </section>
+
+  <!-- ══ 4 · WHATSAPP ══ -->
+  <section class="tool" id="t4">
+    <div class="kn"><span class="num">04</span><span class="em">💬</span></div>
+    <h2>Guiones de WhatsApp</h2>
+    <p class="lead">El lead ya te escribió — ahora hay que <b>calificar, agendar y cerrar</b>. Copia, ajusta y responde rápido (los primeros 5 minutos valen oro).</p>
+
+    <h3>Primer mensaje (respuesta rápida)</h3>
+    <div class="cb withbtn"><div class="lbl">💬 Apertura</div><button class="copy">Copiar</button><pre>¡Hola! 🙌 Gracias por escribir. Sí, el [MARCA MODELO] sigue disponible.
+Para armarte la mejor opción, cuéntame rápido:
+1️⃣ ¿Cómo piensas pagarlo — cash o financiamiento?
+2️⃣ ¿Cuánto tienes disponible para enganche?
+3️⃣ ¿Cuándo te gustaría venir a verlo?</pre></div>
+
+    <h3>Calificar (financiamiento)</h3>
+    <div class="cb withbtn"><div class="lbl">💬 Calificación</div><button class="copy">Copiar</button><pre>¡Perfecto! Para financiamiento solo necesito 3 cositas:
+✅ Identificación (licencia, pasaporte o ITIN)
+✅ Comprobante de ingresos (talones o depósitos)
+✅ Comprobante de domicilio
+Con eso te digo hoy mismo para cuánto calificas. ¿Los tienes a la mano?</pre></div>
+
+    <h3>Agendar la cita</h3>
+    <div class="cb withbtn"><div class="lbl">💬 Cierre de cita</div><button class="copy">Copiar</button><pre>Te aparto el carro para que no te lo ganen 🙌
+¿Te queda mejor HOY a las [hora] o MAÑANA a las [hora]?
+Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
+
+    <h3>Seguimiento (si no contesta)</h3>
+    <div class="two">
+      <div class="cb withbtn"><div class="lbl">💬 Follow-up 1 (mismo día)</div><button class="copy">Copiar</button><pre>¡Hola de nuevo! 👋 ¿Sigues interesado en el [MODELO]? Todavía lo tengo apartado para ti, pero se está moviendo rápido. ¿Lo vemos hoy?</pre></div>
+      <div class="cb withbtn"><div class="lbl">💬 Follow-up 2 (día siguiente)</div><button class="copy">Copiar</button><pre>Antes de soltar el apartado quería avisarte 🙌 Si prefieres otro modelo o rango de precio, dime y te mando opciones. ¿Seguimos?</pre></div>
+    </div>
+
+    <h3>🛑 Manejo de objeciones</h3>
+    <details class="obj"><summary>"Está muy caro"</summary><div class="body"><div class="cb withbtn"><div class="lbl">Respuesta</div><button class="copy">Copiar</button><pre>Te entiendo 🙏 Más que el precio, lo que importa es que el pago te quede cómodo. Si te lo dejo en [$X] al mes con enganche de [$Y], ¿eso sí te funciona? Podemos ajustar el enganche o el plazo.</pre></div></div></details>
+    <details class="obj"><summary>"Lo voy a pensar"</summary><div class="body"><div class="cb withbtn"><div class="lbl">Respuesta</div><button class="copy">Copiar</button><pre>¡Claro, con confianza! 🙌 Solo para ayudarte a decidir: ¿qué es lo único que te falta para decir que sí — el precio, el enganche, o ver el carro en persona? Así te resuelvo eso mismo.</pre></div></div></details>
+    <details class="obj"><summary>"No tengo crédito / historial"</summary><div class="body"><div class="cb withbtn"><div class="lbl">Respuesta</div><button class="copy">Copiar</button><pre>No hay problema 💪 Trabajamos con muchas personas que apenas empiezan. Financiamos con ITIN, pasaporte o licencia. Empezamos hoy tu proceso y tú vas creando historial con este carro. ¿Traes tu ID a la mano?</pre></div></div></details>
+    <details class="obj"><summary>"Déjame preguntarle a mi esposo/a"</summary><div class="body"><div class="cb withbtn"><div class="lbl">Respuesta</div><button class="copy">Copiar</button><pre>¡Perfecto, es una decisión de dos! 🙌 ¿Por qué no se vienen juntos hoy a verlo? Así lo checan los dos y les doy los números claros sin compromiso. ¿A qué hora les acomoda?</pre></div></div></details>
+    <details class="obj"><summary>"Vi uno más barato en otro lado"</summary><div class="body"><div class="cb withbtn"><div class="lbl">Respuesta</div><button class="copy">Copiar</button><pre>¡Qué bueno que comparas! 👌 Ojo con lo barato: pide siempre título limpio y carfax. Los míos vienen revisados y con garantía de proceso. Si me mandas el otro anuncio, te digo honestamente si conviene o tiene truco.</pre></div></div></details>
+  </section>
+
+  <!-- ══ 5 · BILINGÜE ══ -->
+  <section class="tool" id="t5">
+    <div class="kn"><span class="num">05</span><span class="em">🌎</span></div>
+    <h2>Respuestas bilingües EN / ES</h2>
+    <p class="lead">Muchos compradores escriben en inglés. Ten estas listas para no perder ni un lead por el idioma.</p>
+
+    <div class="two">
+      <div class="cb withbtn"><div class="lbl">🇺🇸 "Is this still available?"</div><button class="copy">Copiar</button><pre>Yes, it's still available! 🙌 How were you planning to pay — cash or financing? And when would you like to come see it?</pre></div>
+      <div class="cb withbtn"><div class="lbl">🇲🇽 "¿Sigue disponible?"</div><button class="copy">Copiar</button><pre>¡Sí, sigue disponible! 🙌 ¿Cómo pensabas pagarlo — cash o financiamiento? ¿Y cuándo te gustaría venir a verlo?</pre></div>
+    </div>
+    <div class="two">
+      <div class="cb withbtn"><div class="lbl">🇺🇸 "What's the lowest price?"</div><button class="copy">Copiar</button><pre>Great question! The best deal depends on your down payment. Come check it out today and I'll give you my best numbers in person — no pressure. What time works?</pre></div>
+      <div class="cb withbtn"><div class="lbl">🇲🇽 "¿Cuál es tu último precio?"</div><button class="copy">Copiar</button><pre>¡Buena pregunta! El mejor trato depende de tu enganche. Vente hoy a verlo y te doy mis mejores números en persona, sin compromiso. ¿A qué hora te queda?</pre></div>
+    </div>
+    <div class="two">
+      <div class="cb withbtn"><div class="lbl">🇺🇸 "Do you finance with ITIN?"</div><button class="copy">Copiar</button><pre>Absolutely 💪 We finance with ITIN, passport or license — no U.S. credit needed. Bring your ID, proof of income and proof of address and we can start today. Want me to hold it for you?</pre></div>
+      <div class="cb withbtn"><div class="lbl">🇲🇽 "¿Financian con ITIN?"</div><button class="copy">Copiar</button><pre>¡Claro que sí! 💪 Financiamos con ITIN, pasaporte o licencia — sin necesidad de crédito americano. Trae tu ID, comprobante de ingresos y de domicilio y empezamos hoy. ¿Te lo aparto?</pre></div>
+    </div>
+  </section>
+
+  <!-- ══ 6 · RUTINA ══ -->
+  <section class="tool" id="t6">
+    <div class="kn"><span class="num">06</span><span class="em">🏁</span></div>
+    <h2>Rutina diaria del vendedor</h2>
+    <p class="lead">La diferencia entre quien vende y quien no, no es suerte — es <b>hacer esto todos los días</b>. Sigue el checklist.</p>
+
+    <h3>☀️ En la mañana (30–45 min)</h3>
+    <ul class="clean step">
+      <li>Responde TODOS los mensajes de la noche anterior (rapidez = venta).</li>
+      <li>Vuelve a publicar (relist) 2–3 autos en Marketplace.</li>
+      <li>Sube 1 historia mostrando inventario o un auto nuevo.</li>
+    </ul>
+
+    <h3>🌤️ En el día (por bloques)</h3>
+    <ul class="clean step">
+      <li>Contesta cada lead en menos de 5 minutos si puedes.</li>
+      <li>A cada interesado, ofrécele una cita HOY o MAÑANA (nunca dejes abierto).</li>
+      <li>Graba 1 Reel corto (usa un guion de la herramienta 3).</li>
+      <li>Da seguimiento a los que no contestaron ayer (follow-up 1 y 2).</li>
+    </ul>
+
+    <h3>🌙 En la noche (15 min)</h3>
+    <ul class="clean step">
+      <li>Anota: ¿cuántos leads entraron? ¿cuántas citas agendaste?</li>
+      <li>Prepara las fotos/datos de los autos que publicarás mañana.</li>
+      <li>Manda un último "¿seguimos?" a los indecisos del día.</li>
+    </ul>
+
+    <div class="note">🎯 <b>Meta simple:</b> 3 autos republicados + 5 leads contestados + 1 Reel + 2 seguimientos = <b>todos los días</b>. Hazlo 30 días seguidos y verás el cambio.</div>
+  </section>
+
+  <!-- ══ 7 · FOTOS ══ -->
+  <section class="tool" id="t7">
+    <div class="kn"><span class="num">07</span><span class="em">📸</span></div>
+    <h2>Fotos que venden</h2>
+    <p class="lead">Las fotos deciden si dan clic o pasan de largo. No necesitas cámara cara — necesitas orden y luz.</p>
+
+    <h3>📐 El orden correcto (primeras 5 fotos)</h3>
+    <ul class="clean step">
+      <li><b>3/4 frontal:</b> la clásica que enamora — esquina delantera, mostrando frente y lado.</li>
+      <li><b>Lado completo:</b> el perfil limpio del auto.</li>
+      <li><b>Interior desde la puerta:</b> asientos y tablero.</li>
+      <li><b>Tablero/odómetro:</b> mostrando las millas (genera confianza).</li>
+      <li><b>Detalle que vende:</b> rines, pantalla, quemacocos, motor limpio.</li>
+    </ul>
+
+    <div class="two" style="margin-top:16px">
+      <div>
+        <h3 style="color:var(--good)">✅ Sí hazlo</h3>
+        <ul class="clean good">
+          <li>Fotos en la mañana o al atardecer (luz suave).</li>
+          <li>Auto lavado y secado, llantas negras.</li>
+          <li>Fondo limpio: pared, árboles, lote ordenado.</li>
+          <li>Horizontales y a la altura del cofre.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color:#C4453A">✕ Evita</h3>
+        <ul class="clean bad">
+          <li>Sol de mediodía (sombras duras y reflejos).</li>
+          <li>Basura, otros carros o gente en el fondo.</li>
+          <li>Auto sucio o con cosas adentro.</li>
+          <li>Fotos oscuras, borrosas o de noche con flash.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">📱 <b>Tip pro:</b> limpia el lente de tu celular antes de disparar y toma 15–20 fotos para escoger las mejores 8. La primera foto es tu "portada" — que sea la más impactante.</div>
+  </section>
+
+  <!-- ══ 8 · CALIFICACIÓN ══ -->
+  <section class="tool" id="t8">
+    <div class="kn"><span class="num">08</span><span class="em">✅</span></div>
+    <h2>Cheat sheet de calificación</h2>
+    <p class="lead">No pierdas tiempo con quien no va a comprar. Estas preguntas te dicen en 2 minutos si el lead es real y por dónde llevarlo.</p>
+
+    <h3>Las 4 preguntas que califican a cualquiera</h3>
+    <ul class="clean step">
+      <li>¿Cómo lo piensas pagar — <b>cash</b> o <b>financiamiento</b>?</li>
+      <li>¿Cuánto tienes disponible para <b>enganche</b> hoy?</li>
+      <li>¿<b>Para cuándo</b> lo necesitas — esta semana o estás viendo?</li>
+      <li>¿Traes <b>identificación</b> (licencia, pasaporte o ITIN)?</li>
+    </ul>
+
+    <h3>Según cómo pague</h3>
+    <div class="cb"><div class="lbl">💵 CASH</div><pre>El más rápido. Confirma monto y agenda YA. Pide: ID + efectivo/transferencia el día de la entrega. No lo sueltes — cierra cita el mismo día.</pre></div>
+    <div class="cb"><div class="lbl">🏦 FINANCIAMIENTO (con crédito)</div><pre>Pide: ID, comprobante de ingresos y de domicilio. Pre-califica antes de que venga para no hacerle perder el viaje.</pre></div>
+    <div class="cb"><div class="lbl">🌎 ITIN / SIN CRÉDITO</div><pre>Tu especialidad. Necesita: ITIN o pasaporte, comprobante de ingresos (talones/depósitos, a veces cartas de trabajo) y de domicilio. Enganche suele ser un poco mayor — explícalo con seguridad, es normal.</pre></div>
+
+    <div class="note">🚩 <b>Señales de lead que NO va (no pierdas tiempo):</b> solo pregunta "último precio" y desaparece · no da enganche ni fecha · pide que se lo lleves a otra ciudad sin haber apartado · regatea antes de verlo. Contéstale una vez, ofrécele cita, y si no engancha, sigue con el que sí.</div>
+  </section>
+
+  <div class="foot">
+    <b>Kit Vende Autos</b> · creado por <b>Josue Garibay</b><br>
+    Vista Growth Agency · Phoenix, AZ · <a href="https://wa.me/16028217262">WhatsApp (602) 821-7262</a><br>
+    <span style="opacity:.7">¿Quieres que YO te maneje los anuncios cada mes? Escríbeme y platicamos. 🚀</span>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">✅ Copiado</div>
+
+<script>
+  // theme toggle
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('theme');
+    function cur(){return root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');}
+    function set(t){root.setAttribute('data-theme',t);btn.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('kit-theme',t)}catch(e){}}
+    var saved;try{saved=localStorage.getItem('kit-theme')}catch(e){}
+    set(saved||cur());
+    btn.onclick=function(){set(cur()==='dark'?'light':'dark')};
+  })();
+
+  // toast
+  var toastEl=document.getElementById('toast'),toastT;
+  function toast(msg){toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},1600);}
+
+  // copy buttons
+  function copyText(txt,btn){
+    function ok(){if(btn){btn.classList.add('done');var o=btn.textContent;btn.textContent='✓ Copiado';setTimeout(function(){btn.classList.remove('done');btn.textContent=o},1500);}toast('✅ Copiado al portapapeles');}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok).catch(function(){fallback(txt);ok();});}
+    else{fallback(txt);ok();}
+  }
+  function fallback(txt){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(ta);}
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.copy');if(!b)return;
+    var block=b.closest('.cb');var pre=block&&block.querySelector('pre');if(pre)copyText(pre.innerText,b);
+  });
+
+  // ── generador de anuncios ──
+  function v(id){return (document.getElementById(id).value||'').trim();}
+  function generar(){
+    var car=v('g_car'),price=v('g_price'),miles=v('g_miles'),down=v('g_down'),
+        hook=v('g_hook'),name=v('g_name'),phone=v('g_phone'),city=v('g_city');
+    var carT=car||'este auto';
+    var L=function(arr){return arr.filter(Boolean).join('\n');};
+    var contacto=L([name&&phone?('📲 '+name+' · '+phone):(phone?('📲 '+phone):''), city?('📍 '+city):'']);
+
+    var ads=[
+      {n:'Formal / profesional',t:L([
+        (car?('🚗 '+car):'🚗 Excelente unidad disponible'),
+        hook?('• '+hook):'',
+        miles?('• '+miles):'',
+        '• Financiamiento disponible (ITIN, licencia o pasaporte)',
+        down?('• Enganche desde '+down):'',
+        price?('💰 Precio: '+price):'',
+        '',contacto,
+        'Agenda tu prueba de manejo hoy mismo.'])},
+      {n:'Callejero / directo',t:L([
+        (car?('🔥🔥 '+car+' 🔥🔥'):'🔥🔥 CARRO DISPONIBLE 🔥🔥'),
+        'De volada te lo llevas 👇',
+        hook?('✅ '+hook):'',
+        miles?('✅ '+miles):'',
+        '✅ Financiamos con ITIN o licencia',
+        down?('✅ Con solo '+down):'',
+        price?('👉 '+price):'',
+        '',
+        'No lo pienses, se va rápido ⚡',contacto])},
+      {n:'Urgencia',t:L([
+        '⏰ ¡SE VA ESTA SEMANA! ⏰',
+        (car?('🚗 '+car):''),
+        price?('Precio de remate: '+price):'',
+        down?('Enganche desde '+down+' y sales manejando 🔑'):'Enganche accesible y sales manejando 🔑',
+        miles?('Solo '+miles):'',
+        hook?(hook):'',
+        '',
+        'Ya tengo gente preguntando — el primero que aparte se lo lleva.',contacto])},
+      {n:'Lujo / premium',t:L([
+        (car?('✨ '+car+' ✨'):'✨ Unidad premium ✨'),
+        'Impecable por dentro y por fuera.',
+        hook?('• '+hook):'',
+        miles?('• '+miles):'',
+        '• Listo para estrenar',
+        price?('Inversión: '+price):'',
+        down?('Planes desde '+down+' de enganche'):'',
+        '',
+        'Calidad que se nota. Agéndalo en privado 👇',contacto])},
+      {n:'Familiar / confianza',t:L([
+        (car?('🚗 '+car+' — ideal para la familia'):'🚗 El carro ideal para tu familia'),
+        'Seguro, cómodo y rendidor.',
+        hook?('✅ '+hook):'',
+        miles?('✅ '+miles):'',
+        '✅ Te ayudamos con el financiamiento paso a paso',
+        down?('✅ Enganche desde '+down):'',
+        price?('💰 '+price):'',
+        '',
+        'Con gusto te explico todo sin compromiso 🙌',contacto])},
+      {n:'Corto (Stories / status)',t:L([
+        (car?(car+' 🚗'):'Carro disponible 🚗'),
+        [price,miles].filter(Boolean).join(' · '),
+        down?('Enganche desde '+down):'',
+        'ITIN OK ✅',
+        contacto])}
+    ];
+
+    var html='';
+    ads.forEach(function(a){
+      var safe=a.t.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      html+='<div class="cb withbtn"><div class="lbl">🚗 Estilo: '+a.n+'</div><button class="copy">Copiar</button><pre>'+safe+'</pre></div>';
+    });
+    document.getElementById('g_out').innerHTML=html;
+    document.getElementById('g_out').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+</script>
+</body>
+</html>
