@@ -36,7 +36,8 @@
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
   body{margin:0;font-family:var(--sans);background:var(--ground);color:var(--ink);
-    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;touch-action:manipulation}
+  a,button,input,summary,.copy,.genbtn,.nav a{touch-action:manipulation}
 
   /* ── top bar ── */
   .top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--surface) 90%,transparent);
