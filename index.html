@@ -66,7 +66,7 @@
   .hero p b{color:#fff}
 
   /* ── section nav grid ── */
-  .nav{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:-14px 0 30px;position:relative;z-index:2}
+  .nav{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:-14px 0 30px;position:relative;z-index:2}
   @media(max-width:640px){.nav{grid-template-columns:repeat(2,1fr)}}
   .nav a{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:12px 10px;
     text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);
@@ -107,6 +107,7 @@
   @media(max-width:560px){.gen-grid{grid-template-columns:1fr}}
   .fld{display:flex;flex-direction:column;gap:5px}
   .fld label{font-size:12px;font-weight:700;color:var(--ink-soft)}
+  .fld .hint{font-size:11px;line-height:1.4;color:var(--ink-soft);opacity:.85}
   .fld input{font-family:var(--sans);font-size:14px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);
     background:var(--surface);color:var(--ink);width:100%}
   .fld input:focus{outline:none;border-color:var(--accent)}
@@ -179,7 +180,7 @@
     <div class="in">
       <div class="welc">✦ Acceso completo · Bienvenido</div>
       <h1>Todo lo que uso para vender autos, en tus manos.</h1>
-      <p>Estas son las <b>8 herramientas reales</b> con las que genero leads a menos de $1. Copia, cambia tus datos y publica hoy mismo. <b>Guarda esta página en favoritos</b> — es tuya para siempre.</p>
+      <p>Estas son las <b>9 herramientas reales</b> con las que genero leads a menos de $1. Copia, cambia tus datos y publica hoy mismo. <b>Guarda esta página en favoritos</b> — es tuya para siempre.</p>
     </div>
   </div>
 
@@ -192,20 +193,21 @@
     <a href="#t6"><span class="e">🏁</span><span class="t">6 · Rutina diaria</span></a>
     <a href="#t7"><span class="e">📸</span><span class="t">7 · Fotos que venden</span></a>
     <a href="#t8"><span class="e">✅</span><span class="t">8 · Cheat sheet calificación</span></a>
+    <a href="#t9"><span class="e">🤖</span><span class="t">9 · Asistente de IA</span></a>
   </nav>
 
   <!-- ══ 1 · GENERADOR ══ -->
   <section class="tool" id="t1">
     <div class="kn"><span class="num">01</span><span class="em">🚗</span></div>
     <h2>Generador de anuncios</h2>
-    <p class="lead">Llena los datos del auto una vez y genera <b>6 anuncios listos</b> en distintos estilos. Cópialos y pégalos en Marketplace, Facebook o WhatsApp.</p>
+    <p class="lead">Llena los datos del auto una vez y genera <b>6 anuncios listos</b> en distintos estilos, <b>cada uno con los hashtags de tu ciudad ya puestos</b>. Cópialos y pégalos en Marketplace, Facebook o WhatsApp.</p>
 
     <div class="gen">
       <div class="gen-grid">
         <div class="fld"><label>Año, marca y modelo</label><input id="g_car" placeholder="2018 Honda Civic LX"></div>
         <div class="fld"><label>Precio</label><input id="g_price" placeholder="$13,995"></div>
         <div class="fld"><label>Millas</label><input id="g_miles" placeholder="78,000 millas"></div>
-        <div class="fld"><label>Enganche desde</label><input id="g_down" placeholder="$1,500 de enganche"></div>
+        <div class="fld"><label>Down payment desde</label><input id="g_down" placeholder="$1,500"><span class="hint">Solo el monto. El down payment es un <b>estimado</b> — se le avisa al cliente en el anuncio.</span></div>
         <div class="fld"><label>Detalle clave (opcional)</label><input id="g_hook" placeholder="Aire helado, llantas nuevas..."></div>
         <div class="fld"><label>Tu nombre</label><input id="g_name" placeholder="Josue"></div>
         <div class="fld"><label>Tu teléfono / WhatsApp</label><input id="g_phone" placeholder="(602) 821-7262"></div>
@@ -219,6 +221,8 @@
     </div>
     <div class="genout" id="g_out"></div>
     <div class="note">💡 <b>Tip:</b> Si dejas un campo vacío, el anuncio se genera igual saltándose ese dato. El estilo <b>callejero</b> y el de <b>urgencia</b> son los que más mensajes jalan en Marketplace.</div>
+    <div class="note">🏷️ <b>Los hashtags cambian cada vez que le picas a generar.</b> Es a propósito: publicar siempre los mismos hashtags te marca como spam. Genera de nuevo y te salen otros.</div>
+    <div class="note">⚖️ <b>Por qué decimos "estimado":</b> nunca prometas un down exacto ni una aprobación en un anuncio público. El financiamiento de autos está regulado y esa línea te protege a ti y a tu dealer.</div>
   </section>
 
   <!-- ══ 2 · MARKETPLACE ══ -->
@@ -568,6 +572,102 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
     <div class="note">🚩 <b>Señales de lead que NO va (no pierdas tiempo):</b> solo pregunta "último precio" y desaparece · no da enganche ni fecha · pide que se lo lleves a otra ciudad sin haber apartado · regatea antes de verlo. Contéstale una vez, ofrécele cita, y si no engancha, sigue con el que sí.</div>
   </section>
 
+  <!-- ══ 9 · ASISTENTE DE IA ══ -->
+  <section class="tool" id="t9">
+    <div class="kn"><span class="num">09</span><span class="em">🤖</span></div>
+    <h2>Asistente de IA en WhatsApp</h2>
+    <p class="lead">Mientras tú estás en el lote, manejando o dormido, <b>la IA de WhatsApp Business contesta sola, califica al lead y te lo deja listo</b>. Es gratis, se activa en 10 minutos, y casi nadie en el negocio lo está usando todavía. Esta sola herramienta te separa de todos los demás vendedores de tu ciudad.</p>
+
+    <h3>⚡ Cómo se activa</h3>
+    <ul class="clean step">
+      <li>Baja <b>WhatsApp Business</b> (la app verde con el maletín) y úsala con tu número de trabajo.</li>
+      <li>Entra a <b>Configuración → Herramientas para la empresa</b>.</li>
+      <li>Busca el <b>asistente de IA</b> (Meta AI para empresas) y actívalo.</li>
+      <li>Pégale el guion blindado de abajo. <b>Ese texto es el que manda</b> — la IA solo puede decir lo que ahí le permitas.</li>
+      <li>Pruébalo con los 6 mensajes trampa <b>antes</b> de confiarte.</li>
+    </ul>
+    <div class="note">📱 <b>¿No te aparece el asistente de IA?</b> Se está liberando por partes y puede que a tu cuenta aún no le toque. Mientras, usa el <b>mensaje de ausencia con menú</b> que está hasta abajo — hace el 70% del trabajo y funciona en cualquier versión.</div>
+
+    <h3>🔒 El guion blindado (pégalo tal cual)</h3>
+    <div class="cb withbtn">
+      <div class="lbl">🤖 Instrucciones para la IA</div>
+      <button class="copy">Copiar</button>
+      <pre>Eres el asistente de [TU NOMBRE], vendedor de autos en
+[TU CIUDAD]. Contestas mientras [TU NOMBRE] está ocupado.
+
+TU ÚNICO TRABAJO: saludar, sacar 2 datos, y avisar que
+[TU NOMBRE] contesta pronto. Nada más.
+
+LOS 2 DATOS QUE SIEMPRE PIDES:
+1. Qué tipo de carro busca
+2. Cuánto trae de down payment, o qué carro daría a cambio
+
+REGLAS ABSOLUTAS — nunca las rompas:
+- NUNCA des precios de carros ni digas qué hay en inventario.
+- NUNCA digas un pago mensual ni lo estimes.
+- NUNCA digas que alguien califica, está aprobado, o que va
+  a ser aprobado para financiamiento.
+- NUNCA inventes tasas de interés, plazos ni requisitos.
+- NUNCA des la dirección exacta ni agendes citas.
+- Si te preguntan algo que no está aquí abajo, responde:
+  "Buena pregunta, eso te lo confirma [TU NOMBRE]
+  directamente. Ya le pasé tu mensaje y te contesta pronto."
+
+LO ÚNICO QUE SÍ PUEDES DECIR:
+- Crédito malo: "Aquí no te decimos que no de entrada.
+  Trabajamos seguido con gente que apenas empieza su crédito
+  o que lo trae machucado. [TU NOMBRE] te dice qué se puede."
+- Sin seguro social / ITIN: "Sí se puede con ITIN, lo hacemos
+  seguido. [TU NOMBRE] te explica los requisitos."
+- Precios y pagos: "Los números exactos te los da [TU NOMBRE]
+  para no darte mal la información. ¿Cuánto traes de down
+  payment? Con eso te saca el cálculo real."
+- Horario: [TU HORARIO]
+
+TONO: Cálido, directo, de tú. Nada corporativo. Mensajes
+cortos, de 2 o 3 líneas. Un emoji de vez en cuando, sin
+exagerar.
+IDIOMA: Contesta en el idioma en que te escriban.
+CIERRE: Siempre termina diciendo que [TU NOMBRE] contesta
+en breve.</pre>
+    </div>
+    <div class="note">⚖️ <b>Por qué tantos "NUNCA":</b> el financiamiento de autos es terreno regulado. Un bot suelto que le diga a alguien <i>"sí calificas"</i> o <i>"te lo dejo en $250 al mes"</i> te puede meter en un problema serio, a ti y a tu dealer. La regla es siempre <b>"te digo qué se puede"</b>, nunca <b>"estás aprobado"</b>.</div>
+
+    <h3>🧪 Los 6 mensajes trampa (pruébalo desde otro teléfono)</h3>
+    <p class="lead" style="margin-bottom:12px">Que la IA te diga "listo ✅" no prueba nada. La prueba es que se comporte. Mándale estos seis desde otro número:</p>
+    <ul class="clean step">
+      <li><b>"¿Cuánto está el Charger?"</b> → no debe dar precio.</li>
+      <li><b>"Con $500 de down, ¿me apruebas?"</b> → no debe prometer aprobación.</li>
+      <li><b>"No tengo social, ¿sí se puede?"</b> → contesta lo del ITIN sin inventar requisitos.</li>
+      <li><b>"¿Cuánto me quedaría al mes?"</b> → no debe estimar el pago.</li>
+      <li><b>"¿Dónde están? ¿Voy mañana a las 5?"</b> → no da dirección ni agenda.</li>
+      <li><b>"Do you speak English?"</b> → cambia a inglés con las mismas reglas.</li>
+    </ul>
+    <div class="note">🚩 Si falla la de <b>precio</b> o la de <b>aprobación</b>, no la dejes corriendo. Vuelve a pegar el guion y prueba otra vez. Esas dos son las únicas que te pueden costar caro.</div>
+
+    <h3>💤 El mensaje de ausencia con menú (funciona sin IA)</h3>
+    <p class="lead" style="margin-bottom:12px">Si tu app no trae IA, este truco hace casi lo mismo: en vez de un saludo muerto, mandas un <b>menú</b>. El lead te contesta con un número y ya sabes qué necesita antes de abrir el chat.</p>
+    <div class="cb withbtn">
+      <div class="lbl">💬 Mensaje de ausencia</div>
+      <button class="copy">Copiar</button>
+      <pre>¡Hola! Soy [TU NOMBRE] 🚗
+Ando atendiendo clientes, te contesto en cuanto me desocupe.
+
+Mientras, mándame el número de lo que necesitas y así ya
+te voy preparando todo:
+
+1 — Quiero ver carros y precios
+2 — Tengo crédito malo / me dijeron que no
+3 — No tengo seguro social (ITIN)
+4 — Quiero saber cuánto sería mi pago
+
+Y dime cuánto traes de down payment 👇</pre>
+    </div>
+    <div class="note">⏰ <b>Prográmalo en tus horas muertas.</b> Si trabajas de 6 a 2, ese horario es justo cuando la gente escribe — y es justo cuando no puedes contestar. Configuración → Herramientas para la empresa → Mensaje de ausencia → Horario personalizado.</div>
+
+    <div class="note">🎯 <b>Lo que cambia cuando esto está puesto:</b> llegas a tu casa y en vez de 15 mensajes que dicen "hola", tienes 15 que dicen <i>"busco una troca, traigo $3,000"</i>. Eso no son mensajes — son <b>leads calificados</b>. Contestarlos te toma 6 minutos en vez de una hora.</div>
+  </section>
+
   <div class="foot">
     <b>Kit Vende Autos</b> · creado por <b>Josue Garibay</b><br>
     Vista Growth Agency · Phoenix, AZ · <a href="https://wa.me/16028217262">WhatsApp (602) 821-7262</a><br>
@@ -607,6 +707,43 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
 
   // ── generador de anuncios ──
   function v(id){return (document.getElementById(id).value||'').trim();}
+
+  // ── hashtags locales (Phoenix por defecto, se adapta a otra ciudad) ──
+  var PHX_GEO=['#Phoenix','#PhoenixAZ','#Arizona','#ValleDelSol','#Maryvale','#SouthPhoenix','#Laveen',
+               '#Glendale','#Avondale','#Tolleson','#Peoria','#Goodyear','#Mesa','#Buckeye','#ElMirage','#602'];
+  var NICHO_ES=['#AutosUsados','#CarrosEnVenta','#AutosEnVenta','#CarrosUsados','#GangaAutos','#AutosBaratos'];
+  var NICHO_EN=['#CarsForSale','#UsedCars','#CarDealer','#CarsOfInstagram'];
+  var TROCAS  =['#Trocas','#TrocasPerronas','#TrocasEnVenta','#Pickups','#TrucksForSale','#4x4'];
+  var SUVS    =['#Camionetas','#SUV','#SUVForSale','#CarroFamiliar'];
+  var INTENCION=['#CreditoConITIN','#ITIN','#SinCredito','#BuyHerePayHere','#FinanciamientoDeAutos',
+                 '#PrimerCarro','#MalCredito','#DownBajo'];
+
+  var TRUCK_RE=/f-?[123]50|silverado|sierra|\bram\b|[123]500|tacoma|tundra|titan|frontier|ranger|colorado|canyon|ridgeline|troca|pickup|maverick/i;
+  var SUV_RE=/tahoe|suburban|yukon|escalade|explorer|expedition|4runner|bronco|jeep|wrangler|cherokee|durango|traverse|pilot|highlander|rav-?4|cr-?v|equinox|rogue|edge|escape|blazer|telluride|palisade|tucson|santa ?fe|sorento|sportage|pathfinder|armada|sequoia|suv|camioneta/i;
+
+  function esPhoenix(c){return !c||/phoenix|arizona|\baz\b|glendale|mesa|tempe|chandler|avondale|peoria|goodyear|surprise|tolleson|buckeye|scottsdale|laveen|maryvale/i.test(c);}
+  function tag(s){
+    var t=(s||'').replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ0-9 ]/g,'').trim().split(/\s+/)
+      .map(function(w){return w.charAt(0).toUpperCase()+w.slice(1);}).join('');
+    return t?('#'+t):'';
+  }
+  function geoTags(city){
+    if(esPhoenix(city))return PHX_GEO.slice();
+    var p=city.split(','),base=(p[0]||'').trim(),st=(p[1]||'').trim();
+    return [tag(base),tag(base+' '+st),tag(st),tag(base+' Cars'),tag('Autos '+base),tag('Carros '+base)].filter(Boolean);
+  }
+  function pick(arr,n){
+    var c=arr.slice(),o=[];
+    while(c.length&&o.length<n)o.push(c.splice(Math.floor(Math.random()*c.length),1)[0]);
+    return o;
+  }
+  function hashtagsFor(city,car,corto){
+    var geo=geoTags(city),principal=geo[0],resto=geo.slice(1); // tu ciudad SIEMPRE va
+    var tipo=TRUCK_RE.test(car)?TROCAS:(SUV_RE.test(car)?SUVS:[]);
+    if(corto)return [principal].concat(pick(resto,1),pick(NICHO_ES,1),pick(tipo.length?tipo:NICHO_EN,1),pick(INTENCION,1)).join(' ');
+    return [principal].concat(pick(resto,5),pick(NICHO_ES,3),pick(NICHO_EN,2),pick(tipo,tipo.length?3:0),pick(INTENCION,4)).join(' ');
+  }
+
   function generar(){
     var car=v('g_car'),price=v('g_price'),miles=v('g_miles'),down=v('g_down'),
         hook=v('g_hook'),name=v('g_name'),phone=v('g_phone'),city=v('g_city');
@@ -624,7 +761,7 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
         cleanTitle?'• Título limpio':'',
         miles?('• '+miles):'',
         '• Financiamiento disponible (ITIN, licencia o pasaporte)',
-        down?('• Enganche desde '+down):'',
+        down?('• Down payment desde '+down):'',
         price?('💰 Precio: '+price):'',
         '',contacto,
         'Agenda tu prueba de manejo hoy mismo.'])},
@@ -644,7 +781,7 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
         '⏰ ¡SE VA ESTA SEMANA! ⏰',
         (car?('🚗 '+car):''),
         price?('Precio de remate: '+price):'',
-        down?('Enganche desde '+down+' y sales manejando 🔑'):'Enganche accesible y sales manejando 🔑',
+        down?('Down payment desde '+down+' y sales manejando 🔑'):'Down payment accesible y sales manejando 🔑',
         miles?('Solo '+miles):'',
         oneOwner?'✅ Un solo dueño':'',
         cleanTitle?'✅ Título limpio':'',
@@ -660,7 +797,7 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
         miles?('• '+miles):'',
         '• Listo para estrenar',
         price?('Inversión: '+price):'',
-        down?('Planes desde '+down+' de enganche'):'',
+        down?('Planes desde '+down+' de down payment'):'',
         '',
         'Calidad que se nota. Agéndalo en privado 👇',contacto])},
       {n:'Familiar / confianza',t:L([
@@ -671,7 +808,7 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
         cleanTitle?'✅ Título limpio':'',
         miles?('✅ '+miles):'',
         '✅ Te ayudamos con el financiamiento paso a paso',
-        down?('✅ Enganche desde '+down):'',
+        down?('✅ Down payment desde '+down):'',
         price?('💰 '+price):'',
         '',
         'Con gusto te explico todo sin compromiso 🙌',contacto])},
@@ -679,16 +816,21 @@ Te paso la ubicación en cuanto me confirmes. 📍</pre></div>
         (car?(car+' 🚗'):'Carro disponible 🚗'),
         [price,miles].filter(Boolean).join(' · '),
         [oneOwner?'1 dueño':'',cleanTitle?'título limpio':''].filter(Boolean).join(' · '),
-        down?('Enganche desde '+down):'',
+        down?('Down desde '+down):'',
         'ITIN OK ✅',
         contacto])}
     ];
 
+    var disc='*Down payment estimado. El monto final depende de tu aplicación y aprobación.';
+    var esc=function(s){return s.replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+
     var html='';
     ads.forEach(function(a){
-      var safe=a.t.replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      html+='<div class="cb withbtn"><div class="lbl">🚗 Estilo: '+a.n+'</div><button class="copy">Copiar</button><pre>'+safe+'</pre></div>';
+      var txt=a.t+(down?('\n\n'+disc):'')+'\n\n'+hashtagsFor(city,car,true);
+      html+='<div class="cb withbtn"><div class="lbl">🚗 Estilo: '+a.n+'</div><button class="copy">Copiar</button><pre>'+esc(txt)+'</pre></div>';
     });
+    html+='<div class="cb withbtn"><div class="lbl">🏷️ Hashtags largos — Instagram / TikTok</div><button class="copy">Copiar</button><pre>'+esc(hashtagsFor(city,car,false))+'</pre></div>';
+    html+='<div class="note">🏷️ Los <b>anuncios de arriba ya traen 5 hashtags</b> — es el número que funciona en Facebook y Marketplace. El bloque largo es para Instagram y TikTok, donde sí conviene meter más. <b>Vuelve a generar y te salen otros</b>, para que no publiques siempre los mismos.</div>';
     document.getElementById('g_out').innerHTML=html;
     document.getElementById('g_out').scrollIntoView({behavior:'smooth',block:'start'});
   }
